@@ -56,7 +56,7 @@ class ShapesConfig(Config):
     # Use a small epoch since the data is simple
     STEPS_PER_EPOCH = 100
 
-    # use small validation steps since the epoch is small
+    # use small val steps since the epoch is small
     VALIDATION_STEPS = 5
 
 

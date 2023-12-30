@@ -65,7 +65,7 @@ DEFAULT_LOGS_DIR = os.path.join(ROOT_DIR, "logs")
 RESULTS_DIR = os.path.join(ROOT_DIR, "results/nucleus/")
 
 # The dataset doesn't have a standard train/val split, so I picked
-# a variety of images to surve as a validation set.
+# a variety of images to surve as a val set.
 VAL_IMAGE_IDS = [
     "0c2550a23b8a0f29a7575de8c61690d3c31bc897dd5ba66caec201d201a278c2",
     "92f31f591929a30e4309ab75185c96ff4314ce0a7ead2ed2c2171897ad1da0c7",
@@ -110,7 +110,7 @@ class NucleusConfig(Config):
     # Number of classes (including background)
     NUM_CLASSES = 1 + 1  # Background + nucleus
 
-    # Number of training and validation steps per epoch
+    # Number of training and val steps per epoch
     STEPS_PER_EPOCH = (657 - len(VAL_IMAGE_IDS)) // IMAGES_PER_GPU
     VALIDATION_STEPS = max(1, len(VAL_IMAGE_IDS) // IMAGES_PER_GPU)
 
@@ -188,8 +188,8 @@ class NucleusDataset(utils.Dataset):
         dataset_dir: Root directory of the dataset
         subset: Subset to load. Either the name of the sub-directory,
                 such as stage1_train, stage1_test, ...etc. or, one of:
-                * train: stage1_train excluding validation images
-                * val: validation images from VAL_IMAGE_IDS
+                * train: stage1_train excluding val images
+                * val: val images from VAL_IMAGE_IDS
         """
         # Add classes. We have one class.
         # Naming the dataset nucleus, and the class nucleus
